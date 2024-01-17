@@ -4,4 +4,4 @@ Softswitch für Benedini TBS Micro und TBS Mini Soundmodul.
 
 ![Widget](https://github.com/dieterbruse/softswitchpad/raw/main/Screenshoots/screen-2022-09-19-150242.jpg)
 
-[Anleitungen](https://github.com/dieterbruse/softswitchpad/wiki) sind im Wiki zu finden.
+[Anleitungen](https://github.com/dieterbruse/tbsswitch/wiki) sind im Wiki zu finden.
