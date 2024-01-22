@@ -136,7 +136,8 @@ local ModelImages =
       }
     }
   }, --[ ENDE ModelName default
-  { -- [ Beispielmodell zum Kopieren. Der Modellname muss Identisch zum eintrag ModelName=... sein. 
+   -- [ Beispielmodell zum Kopieren. Der Modellname muss Identisch zum eintrag ModelName=... sein.
+  {
     ModelName="Unimog 406",
     ButtonImages = {
       {
@@ -168,8 +169,8 @@ local ModelImages =
         { Name="bSattelplatte.png" },
         { Name="bSequenz1.png" },
       }
-    } --[Ende Beispielmodell
-  }
+    }
+  } --[Ende Beispielmodell
 }
 
 --[	####################################################################
