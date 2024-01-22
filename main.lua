@@ -94,6 +94,83 @@ local buttonType = {
   ekmfabutton = "ekmfabutton",
   switch = "switch"
 }
+local SelectedModelImageID = 1
+
+--[	####################################################################
+--[ Konfiguration der Modellvarianten.
+--[	####################################################################
+local ModelImages =
+{
+  { --[ Das Model default darf nicht entfernt oder Umbenannt werden da es für nicht konfigurierte Modelle dient.
+    ModelName="default",
+    ButtonImages = {
+     --[ 1st Coder 12 Key
+      {
+        { Name="wF1.png" },
+        { Name="wF2.png" },
+        { Name="wRKL.png" },
+        { Name="wWarnblinker.png"},
+        { Name="wStandlicht.png"},
+        { Name="wAbblendlicht.png"},
+        { Name="wFernlicht.png"},
+        { Name="wNebelscheinwerfer.png"},
+        { Name="wBlinkLinks.png"},
+        { Name="wBlinkRechts.png"},
+        { Name="wMinus.png"},
+        { Name="wPlus.png"}
+      },
+      {  --[ 2nd Coder 2 Key
+        { Name="bMotor.png" },
+        { Name="bMotor.png" },
+        { Name="bTempomat.png" },
+        { Name="bSchubbodenEin.png" },
+        { Name="bSchubbodenAus.png" },
+        { Name="bMF1.png" },
+        { Name="bMF2.png" },
+        { Name="bSattelstuetzeAuf.png" },
+        { Name="bSattelstuetzeAb.png" },
+        { Name="bKipperAuf.png" },
+        { Name="bKipperAb.png" },
+        { Name="bSattelplatte.png" },
+        { Name="bSequenz1.png" },
+      }
+    }
+  }, --[ ENDE ModelName default
+  { -- [ Beispielmodell zum Kopieren. Der Modellname muss Identisch zum eintrag ModelName=... sein. 
+    ModelName="Unimog 406",
+    ButtonImages = {
+      {
+        { Name="wMotor.png" },
+        { Name="wSound.png" },
+        { Name="wRKL.png" },
+        { Name="wWarnblinker.png"},
+        { Name="wStandlicht.png"},
+        { Name="wAbblendlicht.png"},
+        { Name="wFernlicht.png"},
+        { Name="wNebelscheinwerfer.png"},
+        { Name="wBlinkLinks.png"},
+        { Name="wBlinkRechts.png"},
+        { Name="wMinus.png"},
+        { Name="wPlus.png"}
+      },
+      {
+        { Name="bMotor.png" },
+        { Name="bMotor.png" },
+        { Name="bTempomat.png" },
+        { Name="bSchubbodenEin.png" },
+        { Name="bSchubbodenAus.png" },
+        { Name="bMF1.png" },
+        { Name="bMF2.png" },
+        { Name="bSattelstuetzeAuf.png" },
+        { Name="bSattelstuetzeAb.png" },
+        { Name="bKipperAuf.png" },
+        { Name="bKipperAb.png" },
+        { Name="bSattelplatte.png" },
+        { Name="bSequenz1.png" },
+      }
+    } --[Ende Beispielmodell
+  }
+}
 
 --[	####################################################################
 --[	Konfiguration der Buttons
@@ -105,35 +182,35 @@ local configTable = {
   {
     -- Seite 1 Ebne 1
     {
-      { Name="Text", FileName="wMotor.png", Mode=buttonType.pushbutton,ROW=1,COL=1, Value=KeyValues.Taste1 },
-      { Name="Text", FileName="wSound.png", Mode=buttonType.pushbutton,ROW=1,COL=2, Value=KeyValues.Taste2 },
-      { Name="Text", FileName="wRKL.png",  Mode=buttonType.pushbutton,ROW=1,COL=3, Value=KeyValues.Taste3 },
-      { Name="Text", FileName="wWarnblinker.png", Mode=buttonType.pushbutton,ROW=1,COL=4, Value=KeyValues.Taste4 },
-      { Name="Text", FileName="wStandlicht.png", Mode=buttonType.pushbutton,ROW=1,COL=5, Value=KeyValues.Taste5 },
-      { Name="Text", FileName="wAbblendlicht.png", Mode=buttonType.pushbutton,ROW=1,COL=6, Value=KeyValues.Taste6 },
-      { Name="Text", FileName="wFernlicht.png", Mode=buttonType.pushbutton,ROW=2,COL=1, Value=KeyValues.Taste7 },
-      { Name="Text", FileName="wNebelscheinwerfer.png", Mode=buttonType.pushbutton,ROW=2,COL=2, Value=KeyValues.Taste9 },
-      { Name="Text", FileName="wBlinkLinks.png", Mode=buttonType.pushbutton,ROW=2,COL=3, Value=KeyValues.Taste9 },
-      { Name="Text", FileName="wBlinkRechts.png", Mode=buttonType.pushbutton,ROW=2,COL=4, Value=KeyValues.Taste10 },
-      { Name="Text", FileName="wMinus.png", Mode=buttonType.pushbutton,ROW=2,COL=5, Value=KeyValues.Taste11 },
-      { Name="Text", FileName="wPlus.png", Mode=buttonType.pushbutton,ROW=2,COL=6, Value=KeyValues.Taste12 }
+      { Name="Text", Mode=buttonType.pushbutton,ROW=1,COL=1, Value=KeyValues.Taste1 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=1,COL=2, Value=KeyValues.Taste2 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=1,COL=3, Value=KeyValues.Taste3 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=1,COL=4, Value=KeyValues.Taste4 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=1,COL=5, Value=KeyValues.Taste5 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=1,COL=6, Value=KeyValues.Taste6 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=2,COL=1, Value=KeyValues.Taste7 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=2,COL=2, Value=KeyValues.Taste9 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=2,COL=3, Value=KeyValues.Taste9 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=2,COL=4, Value=KeyValues.Taste10 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=2,COL=5, Value=KeyValues.Taste11 },
+      { Name="Text", Mode=buttonType.pushbutton,ROW=2,COL=6, Value=KeyValues.Taste12 }
     }
   },
   {
     -- Seite 2 Ebne 1
     {
-      { Name="Text", FileName="bMotor.png", Mode=buttonType.ekmfabutton,ROW=1,COL=1, Value=KeyValues.EKMFTaste1 },
-      { Name="Text", FileName="bTempomat.png", Mode=buttonType.ekmfabutton,ROW=1,COL=2,Value=KeyValues.EKMFTaste2 },
-      { Name="Text", FileName="bSchubbodenEin.png", Mode=buttonType.ekmfabutton,ROW=1,COL=3, Value=KeyValues.EKMFTaste3 },
-      { Name="Text", FileName="bSchubbodenAus.png", Mode=buttonType.ekmfabutton,ROW=1,COL=4, Value=KeyValues.EKMFTaste4 },
-      { Name="Text", FileName="bMF1.png", Mode=buttonType.ekmfabutton,ROW=1,COL=5, Value=KeyValues.EKMFTaste5 },
-      { Name="Text", FileName="bMF2.png", Mode=buttonType.ekmfabutton,ROW=1,COL=6, Value=KeyValues.EKMFTaste6 },
-      { Name="Text", FileName="bSattelstuetzeAuf.png", Mode=buttonType.ekmfabutton,ROW=2,COL=1, Value=KeyValues.EKMFTaste7 },
-      { Name="Text", FileName="bSattelstuetzeAb.png", Mode=buttonType.ekmfabutton,ROW=2,COL=2, Value=KeyValues.EKMFTaste8 },
-      { Name="Text", FileName="bKipperAuf.png", Mode=buttonType.ekmfabutton,ROW=2,COL=3, Value=KeyValues.EKMFTaste9 },
-      { Name="Text", FileName="bKipperAb.png", Mode=buttonType.ekmfabutton,ROW=2,COL=4, Value=KeyValues.EKMFTaste10 },
-      { Name="Text", FileName="bSattelplatte.png", Mode=buttonType.ekmfabutton,ROW=2,COL=5, Value=KeyValues.EKMFTaste11 },
-      { Name="Text", FileName="bSequenz1.png", Mode=buttonType.ekmfabutton,ROW=2,COL=6, Value=KeyValues.EKMFTaste12 }
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=1,COL=1, Value=KeyValues.EKMFTaste1 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=1,COL=2,Value=KeyValues.EKMFTaste2 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=1,COL=3, Value=KeyValues.EKMFTaste3 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=1,COL=4, Value=KeyValues.EKMFTaste4 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=1,COL=5, Value=KeyValues.EKMFTaste5 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=1,COL=6, Value=KeyValues.EKMFTaste6 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=2,COL=1, Value=KeyValues.EKMFTaste7 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=2,COL=2, Value=KeyValues.EKMFTaste8 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=2,COL=3, Value=KeyValues.EKMFTaste9 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=2,COL=4, Value=KeyValues.EKMFTaste10 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=2,COL=5, Value=KeyValues.EKMFTaste11 },
+      { Name="Text", Mode=buttonType.ekmfabutton,ROW=2,COL=6, Value=KeyValues.EKMFTaste12 }
     }
   }
 }
@@ -408,7 +485,33 @@ end
 --[ ====================================================================================================
 local function LoadConfig(widget)
   write_log("LoadConfig: Bitmap Width:" .. BitmapWidth .. " BitmapHeight:" .. BitmapHeight,true)
+  ModelInfo = model.getInfo()
+  SelectedModelImageID = 1
+  write_log("Model is:" .. ModelInfo.name)
+  write_log("SelectedModelImageID:" .. SelectedModelImageID)
+  for modelID = 1, #ModelImages do
+    if ModelInfo.name == ModelImages[modelID].ModelName then
+      write_log("Mode found :" .. ModelImages[modelID].ModelName)
+      SelectedModelImageID = modelID
+      break
+    else
+      write_log("Mode not found at modelID:" .. modelID .. "[".. ModelImages[modelID].ModelName .. "]")
+    end
+  end
 
+  write_log("############################################################")
+  write_log("# Probe the Model :" .. ModelImages[SelectedModelImageID].ModelName .. " with ID: " .. SelectedModelImageID)
+  write_log("# ButtonImages Count:" .. #ModelImages[SelectedModelImageID].ButtonImages)
+
+  for chn = 1, #ModelImages[SelectedModelImageID].ButtonImages do
+    write_log("#==========================================================")
+    write_log("# Channel Nr.:" .. chn)
+    write_log("#----------------------------------------------------------")
+    for img = 1, #ModelImages[SelectedModelImageID].ButtonImages[chn] do
+      write_log("# Image Nr.:" .. img)
+      write_log("# Image Name:" .. ModelImages[SelectedModelImageID].ButtonImages[chn][img].Name)
+    end
+  end
 
   -- Inititalisieren der Globalenn Variable
   model.setGlobalVariable(GlobalVarialble[ActiveChannel].Index, GlobalVarialble[ActiveChannel].Phase, KeyValues.Neutral)
@@ -427,13 +530,13 @@ local function LoadConfig(widget)
       buttons[channel][page] = {}
       for idx=1, #configTable[channel][page] do
         local Position,WidgetPosition = CalculateFullscreen(configTable[channel][page][idx].ROW, configTable[channel][page][idx].COL, widget)
-        write_log("LoadConfig: Row:" .. configTable[channel][page][idx].ROW .. "Col:" .. configTable[channel][page][idx].COL .. " x:" .. Position.x .. " y:" .. Position.y, false)
+        write_log("LoadConfig: Row:" .. configTable[channel][page][idx].ROW .. " Col:" .. configTable[channel][page][idx].COL .. " x:" .. Position.x .. " y:" .. Position.y, false)
         buttons[channel][page][idx] = CreateButton(Position
                                 ,WidgetPosition
                                 ,BitmapWidth
                                 ,BitmapHeight
                                 ,configTable[channel][page][idx].Name
-                                ,Bitmap.open("/WIDGETS/TBSSWT/PNG/" .. configTable[channel][page][idx].FileName)
+                                ,Bitmap.open("/WIDGETS/TBSSWT/PNG/" .. ModelImages[SelectedModelImageID].ButtonImages[channel][idx].Name)
                                 ,configTable[channel][page][idx].Mode
                                 ,configTable[channel][page][idx].Value
                                 , CallBackFunktion)
